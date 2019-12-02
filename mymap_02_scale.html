@@ -7359,7 +7359,6 @@
 	var basemaps = {
 		"Open Street Map DE": osm_basemap,
 		"Open Topo Map": otm_basemap,
-		"Black & White": OpenMapSurfer_Grayscale_basemap,
 		"Satelite": GeoportailFrance_orthos
 	};
 	
@@ -7379,6 +7378,13 @@ fillOpacity: 0.6
 	var overlays = {
 	"Earthquakes in Germany": overlay_eq_points};
 
+var overlay_DTK1000 = L.tileLayer.wms("http://sg.geodatenzentrum.de/wms_dtk1000", {
+layers: 'dtk1000',
+format: 'image/png',
+transparent: true,
+attribution: "SG.Geodatenzentrum"
+});
+overlay_DTK1000.addTo(mymap);
 	
 	// add a legend with basemaps
 	//var legend = L.control.layers(basemaps, null, {}).addTo(mymap); // normal legend
@@ -7396,3 +7402,5 @@ fillOpacity: 0.6
 
 </body>
 </html>
+
+
