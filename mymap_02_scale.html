@@ -7352,6 +7352,8 @@
 ]
 };
 
+
+
 	
 	// put all basemaps in a list
 	var basemaps = {
@@ -7361,12 +7363,26 @@
 		"Satelite": GeoportailFrance_orthos
 	};
 	
+var orangeMarker = {
+radius: 8,
+fillColor: "#ff7800",
+color: "#000",
+weight: 1,
+opacity: 1,
+fillOpacity: 0.6
+};
+
 	// Earth quakes as Overlay in MyMap:
-	var overlay_eq_points = L.geoJSON(eq_points).addTo(mymap);
+	var overlay_eq_points = L.geoJSON(eq_points, {pointToLayer: function (feature, latlng) { return L.circleMarker (latlng, orangeMarker);
+	}}).addTo(mymap);
+
+	var overlays = {
+	"Earthquakes in Germany": overlay_eq_points};
+
 	
 	// add a legend with basemaps
 	//var legend = L.control.layers(basemaps, null, {}).addTo(mymap); // normal legend
-	var legend = L.control.layers(basemaps, null, {collapsed: false}).addTo(mymap); //advanced legend
+	var legend = L.control.layers(basemaps, overlays, {collapsed: false}).addTo(mymap); //advanced legend
 	
 	var legend = L.control.scale({maxWidth: 150, metric: true, imperial: true}).addTo(mymap);
 	
