@@ -7355,12 +7355,7 @@
 
 
 	
-	// put all basemaps in a list
-	var basemaps = {
-		"Open Street Map DE": osm_basemap,
-		"Open Topo Map": otm_basemap,
-		"Satelite": GeoportailFrance_orthos
-	};
+	
 	
 var orangeMarker = {
 radius: 8,
@@ -7375,8 +7370,7 @@ fillOpacity: 0.6
 	var overlay_eq_points = L.geoJSON(eq_points, {pointToLayer: function (feature, latlng) { return L.circleMarker (latlng, orangeMarker);
 	}}).addTo(mymap);
 
-	var overlays = {
-	"Earthquakes in Germany": overlay_eq_points};
+	
 
 var overlay_DTK1000 = L.tileLayer.wms("http://sg.geodatenzentrum.de/wms_dtk1000", {
 layers: 'dtk1000',
@@ -7386,6 +7380,16 @@ attribution: "SG.Geodatenzentrum"
 });
 overlay_DTK1000.addTo(mymap);
 	
+// put all basemaps in a list
+	var basemaps = {
+		"Open Street Map DE": osm_basemap,
+		"Open Topo Map": otm_basemap,
+		"Satelite": GeoportailFrance_orthos
+	};
+	var overlays = {
+		"Earthquakes in Germany": overlay_eq_points,
+		"Topo Map 1:1 Mio": overlay_DTK1000};
+
 	// add a legend with basemaps
 	//var legend = L.control.layers(basemaps, null, {}).addTo(mymap); // normal legend
 	var legend = L.control.layers(basemaps, overlays, {collapsed: false}).addTo(mymap); //advanced legend
